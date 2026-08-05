@@ -22,7 +22,6 @@ A modern <b>MERN Stack</b> web application that enables users to securely manage
 
 <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap"/>
 
-<img src="https://img.shields.io/badge/REST%20API-00599C?style=for-the-badge"/>
 
 </p>
 
