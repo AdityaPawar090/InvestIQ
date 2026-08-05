@@ -1,0 +1,154 @@
+/* Scoped under .bw-* to avoid colliding with Bootstrap's global
+   .container / .btn / .buttons classes used everywhere else in the app.
+   (Previously this file redefined `.container` and `.btn` globally,
+   which silently broke layout on every other page that used those
+   Bootstrap classes — including the AI Chatbot page.) */
+
+.bw-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.bw-container {
+  --radius: 16px;
+  width: 380px;
+  max-width: 92vw;
+  background: var(--iq-surface, #fff);
+  color: var(--iq-text, #1e2334);
+  box-sizing: border-box;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.bw-header {
+  width: 100%;
+  background: linear-gradient(135deg, var(--iq-primary, #fb923c), var(--iq-primary-dark, #ea580c));
+  box-sizing: border-box;
+  padding: 18px 20px;
+}
+
+.bw-header h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.bw-header h3 span {
+  font-size: 0.7rem;
+  opacity: 0.85;
+}
+
+.bw-regular-order {
+  padding: 20px;
+  background-color: var(--iq-surface, #fff);
+}
+
+.bw-inputs {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.bw-inputs fieldset {
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid var(--iq-border, #e6e9f2);
+  border-radius: 10px;
+  padding: 4px 8px;
+}
+
+.bw-inputs fieldset legend {
+  margin-left: 6px;
+  font-size: 0.75rem;
+  padding: 0 4px;
+  color: var(--iq-text-muted, #6b7280);
+}
+
+.bw-inputs fieldset input {
+  border: none;
+  background: transparent;
+  color: var(--iq-text, #1e2334);
+  width: 100%;
+  min-height: 34px;
+  padding: 0 6px;
+  box-sizing: border-box;
+  font-size: 1.05rem;
+}
+
+.bw-inputs fieldset input:focus {
+  outline: none;
+}
+
+.bw-buttons {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-top: 1px solid var(--iq-border, #e6e9f2);
+}
+
+.bw-buttons span {
+  font-size: 0.8rem;
+  color: var(--iq-text-muted, #6b7280);
+}
+
+.bw-btn {
+  text-decoration: none;
+  padding: 9px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-left: 8px;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.bw-btn-blue {
+  background: linear-gradient(135deg, var(--iq-primary, #fb923c), var(--iq-primary-dark, #ea580c));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(251, 146, 60, 0.35);
+}
+
+.bw-btn-blue:hover {
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.bw-btn-grey {
+  background: var(--iq-bg, #f4f6fb);
+  color: var(--iq-text-muted, #6b7280);
+}
+
+.bw-btn-grey:hover {
+  background: var(--iq-border, #e6e9f2);
+  color: var(--iq-text, #1e2334);
+}
+
+.bw-btn-red {
+  background: linear-gradient(135deg, #f87171, #dc2626);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);
+}
+
+.bw-btn-red:hover {
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.bw-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+}
