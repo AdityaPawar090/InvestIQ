@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import UserMenu from "./UserMenu";
 import Logo from "../Logo";
 import { useTheme } from "../ThemeContext";
+import { API_URL, LANDING_URL } from "../config";
 
 const TopBar = () => {
   const { dark, toggleTheme } = useTheme();
@@ -13,7 +14,7 @@ const TopBar = () => {
   useEffect(() => {
     const checkAlerts = () => {
       axios
-        .get("http://localhost:3002/api/alerts/check", { withCredentials: true })
+        .get(`${API_URL}/api/alerts/check`, { withCredentials: true })
         .then((res) => {
           if (res.data.triggered?.length) {
             setTriggeredCount((c) => c + res.data.triggered.length);
@@ -33,7 +34,7 @@ const TopBar = () => {
         <div className="d-flex justify-content-between align-items-center flex-wrap">
           {/* Left */}
           <a
-            href="http://localhost:3000"
+            href={LANDING_URL}
             className="d-flex align-items-center gap-2 text-decoration-none"
             title="Back to InvestIQ home"
           >

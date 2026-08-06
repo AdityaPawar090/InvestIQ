@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { DASHBOARD_URL } from "../../config";
+
 
 function Hero() {
   return (
@@ -60,7 +62,7 @@ function Hero() {
             </Link>
 
             <a
-              href="http://localhost:3001"
+              href={DASHBOARD_URL}
               target="_blank"
               rel="noreferrer"
               className="btn btn-outline-primary btn-lg px-5 rounded-pill"

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import { API_URL, LANDING_URL } from "../config";
 
 const menuItems = [
   { title: "Dashboard", path: "/", icon: "🏠" },
@@ -31,7 +32,7 @@ const Menu = () => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3002/api/auth/logout",
+        `${API_URL}/api/auth/logout`,
         {},
         { withCredentials: true }
       );
@@ -42,7 +43,7 @@ const Menu = () => {
     localStorage.removeItem("user");
 
     // Go back to the landing app's login page
-    window.location.href = "http://localhost:3000/login";
+    window.location.href = `${LANDING_URL}/login`;
   };
 
   return (

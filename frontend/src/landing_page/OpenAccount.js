@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { DASHBOARD_URL } from "../config";
 
 function OpenAccount() {
   return (
@@ -42,10 +43,8 @@ function OpenAccount() {
               Create Free Account
             </Link>
 
-            <a
-              href="http://localhost:3001"
-              target="_blank"
-              rel="noreferrer"
+            
+              href={DASHBOARD_URL}
               className="btn btn-outline-light btn-lg px-5 rounded-pill"
             >
               View Dashboard
