@@ -1,150 +1,433 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.nav-link {
-  margin-left: 40px;
-}
-
 /* ===================================================================
-   InvestIQ Landing Page — Dark Mode + Visual Polish
+   InvestIQ Design System: Minimalist Modern
+   Typography: Calistoga (Display) + Inter (Body/UI) + JetBrains Mono (Badges)
+   Signature Gradient: #0052FF (Electric Blue) -> #4D7CFF (Sky)
    =================================================================== */
 
 :root {
-  --iq-primary: #3B82F6;
-  --iq-primary-dark: #2563EB;
+  /* Chromatic Focus Tokens */
+  --mm-background: #FAFAFA;
+  --mm-foreground: #0F172A; /* Slate-900 */
+  --mm-muted: #F1F5F9; /* Slate-100 */
+  --mm-muted-foreground: #64748B; /* Slate-500 */
+  --mm-accent: #0052FF; /* Electric Blue */
+  --mm-accent-secondary: #4D7CFF; /* Sky gradient endpoint */
+  --mm-accent-foreground: #FFFFFF;
+  --mm-border: #E2E8F0; /* Slate-200 */
+  --mm-border-light: rgba(226, 232, 240, 0.7);
+  --mm-card: #FFFFFF;
+  --mm-ring: #0052FF;
+
+  /* Typography System */
+  --mm-font-display: 'Calistoga', Georgia, serif;
+  --mm-font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --mm-font-mono: 'JetBrains Mono', SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Signature Gradients */
+  --mm-gradient: linear-gradient(135deg, #0052FF 0%, #4D7CFF 100%);
+  --mm-gradient-h: linear-gradient(to right, #0052FF 0%, #4D7CFF 100%);
+  --mm-gradient-subtle: linear-gradient(135deg, rgba(0, 82, 255, 0.08) 0%, rgba(77, 124, 255, 0.03) 100%);
+  --mm-gradient-glow: radial-gradient(circle, rgba(0, 82, 255, 0.12) 0%, transparent 70%);
+
+  /* Shadow System */
+  --mm-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --mm-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --mm-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  --mm-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  --mm-shadow-accent: 0 4px 14px rgba(0, 82, 255, 0.28);
+  --mm-shadow-accent-lg: 0 8px 24px rgba(0, 82, 255, 0.38);
+
+  /* Radii */
+  --mm-radius-sm: 8px;
+  --mm-radius-md: 12px;
+  --mm-radius-lg: 16px;
+  --mm-radius-xl: 24px;
+  --mm-radius-pill: 9999px;
+
+  /* Legacy aliases for backward compatibility */
+  --iq-primary: #0052FF;
+  --iq-primary-dark: #0045D8;
   --iq-radius: 16px;
-  --iq-shadow: 0 4px 24px rgba(31, 41, 84, 0.06);
-  --iq-shadow-hover: 0 10px 32px rgba(31, 41, 84, 0.12);
+  --iq-shadow: var(--mm-shadow-md);
+  --iq-shadow-hover: var(--mm-shadow-xl);
+}
+
+/* ===================================================================
+   Base & Global Typography
+   =================================================================== */
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  transition: background-color 0.2s ease, color 0.2s ease;
+  margin: 0;
+  font-family: var(--mm-font-body);
+  background-color: var(--mm-background);
+  color: var(--mm-foreground);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Buttons: rounder + hover lift, matches dashboard styling */
-.btn {
-  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+h1, h2, .mm-headline {
+  font-family: var(--mm-font-display);
+  font-weight: 400;
+  color: var(--mm-foreground);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
 }
 
-.btn:hover {
+h3, h4, h5, h6 {
+  font-family: var(--mm-font-body);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--mm-muted-foreground);
+  font-size: 1.05rem;
+}
+
+code, .mm-mono {
+  font-family: var(--mm-font-mono);
+}
+
+/* ===================================================================
+   Signature Design System Elements
+   =================================================================== */
+
+/* 1. Gradient Text & Underline */
+.mm-gradient-text {
+  background: var(--mm-gradient-h);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.mm-headline-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.mm-gradient-underline {
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  height: 10px;
+  width: 100%;
+  border-radius: 3px;
+  background: linear-gradient(to right, rgba(0, 82, 255, 0.18), rgba(77, 124, 255, 0.12));
+  z-index: -1;
+}
+
+/* 2. Section Badges (Pills) with Pulsing Dot */
+.mm-section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(0, 82, 255, 0.06);
+  border: 1px solid rgba(0, 82, 255, 0.22);
+  border-radius: var(--mm-radius-pill);
+  font-family: var(--mm-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mm-accent);
+  margin-bottom: 20px;
+}
+
+.mm-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--mm-accent);
+  box-shadow: 0 0 8px rgba(0, 82, 255, 0.6);
+  animation: mm-pulse 2s infinite ease-in-out;
+}
+
+.mm-section-badge-light {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+.mm-section-badge-light .mm-badge-dot {
+  background: #60A5FA;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+}
+
+/* 3. Buttons */
+.mm-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--mm-gradient) !important;
+  color: #FFFFFF !important;
+  font-family: var(--mm-font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 13px 28px;
+  border-radius: var(--mm-radius-md);
+  border: none !important;
+  box-shadow: var(--mm-shadow-accent);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.mm-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--mm-shadow-accent-lg);
+  filter: brightness(1.05);
+  color: #FFFFFF !important;
+}
+
+.mm-btn-primary:active {
+  transform: scale(0.98);
+}
+
+.mm-btn-primary .mm-btn-arrow {
+  transition: transform 0.2s ease;
+}
+
+.mm-btn-primary:hover .mm-btn-arrow {
+  transform: translateX(4px);
+}
+
+.mm-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: transparent !important;
+  color: var(--mm-foreground) !important;
+  font-family: var(--mm-font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 12px 26px;
+  border-radius: var(--mm-radius-md);
+  border: 1px solid var(--mm-border) !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none;
+}
+
+.mm-btn-outline:hover {
+  border-color: rgba(0, 82, 255, 0.4) !important;
+  background: rgba(0, 82, 255, 0.04) !important;
+  color: var(--mm-accent) !important;
   transform: translateY(-2px);
 }
 
-.btn-primary {
-  background: linear-gradient(135deg, var(--iq-primary), var(--iq-primary-dark)) !important;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(251, 146, 60, 0.35);
+/* 4. Cards & Surfaces */
+.mm-card {
+  background: var(--mm-card);
+  border: 1px solid var(--mm-border);
+  border-radius: var(--mm-radius-lg);
+  padding: 32px;
+  box-shadow: var(--mm-shadow-md);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-primary:hover {
-  box-shadow: 0 8px 24px rgba(251, 146, 60, 0.45);
+.mm-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--mm-shadow-xl);
+  border-color: rgba(0, 82, 255, 0.25);
 }
 
-.btn-outline-primary {
-  border-color: var(--iq-primary) !important;
-  color: var(--iq-primary-dark) !important;
+.mm-card-featured {
+  background: linear-gradient(135deg, rgba(0, 82, 255, 0.4), rgba(77, 124, 255, 0.2));
+  padding: 2px;
+  border-radius: calc(var(--mm-radius-lg) + 2px);
+  box-shadow: var(--mm-shadow-accent);
 }
 
-.btn-outline-primary:hover {
-  background: var(--iq-primary) !important;
-  border-color: var(--iq-primary) !important;
-  color: #fff !important;
+.mm-card-featured-inner {
+  background: var(--mm-card);
+  border-radius: var(--mm-radius-lg);
+  padding: 30px;
+  height: 100%;
 }
 
-.text-primary {
-  color: var(--iq-primary-dark) !important;
+.mm-icon-container {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--mm-radius-md);
+  background: var(--mm-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0, 82, 255, 0.25);
 }
 
-.bg-primary {
-  background: linear-gradient(135deg, var(--iq-primary), var(--iq-primary-dark)) !important;
+/* 5. Inverted Section (Signature Contrast Area) */
+.mm-inverted-section {
+  background-color: var(--mm-foreground);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0;
 }
 
-/* Cards get a lift on hover for a livelier feel */
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: var(--iq-radius) !important;
+.mm-inverted-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--iq-shadow-hover);
+.mm-inverted-section::after {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 82, 255, 0.22) 0%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
 }
 
-.navbar-brand, .nav-link {
-  transition: color 0.15s ease;
+.mm-inverted-section .mm-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  backdrop-filter: blur(8px);
 }
 
-.nav-link:hover {
-  color: var(--iq-primary-dark) !important;
+.mm-inverted-section .mm-card:hover {
+  border-color: rgba(77, 124, 255, 0.5);
+  background: rgba(255, 255, 255, 0.07);
 }
 
-/* ===== Dark Mode ===== */
+.mm-inverted-section p {
+  color: #94A3B8;
+}
+
+.mm-inverted-section h1,
+.mm-inverted-section h2,
+.mm-inverted-section h3,
+.mm-inverted-section h4 {
+  color: #FFFFFF;
+}
+
+/* 6. Living Hero Graphic & Micro-Animations */
+@keyframes mm-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes mm-float {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-12px); }
+}
+
+@keyframes mm-float-delayed {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(12px); }
+}
+
+@keyframes mm-rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mm-float-1 {
+  animation: mm-float 4.5s ease-in-out infinite alternate;
+}
+
+.mm-float-2 {
+  animation: mm-float-delayed 5.5s ease-in-out infinite alternate;
+}
+
+.mm-rotating-ring {
+  animation: mm-rotate-slow 60s linear infinite;
+}
+
+/* ===================================================================
+   Dark Theme Adaptation
+   =================================================================== */
+
 body.dark-theme {
-  background-color: #0f172a;
-  color: #e2e8f0;
+  --mm-background: #090D16;
+  --mm-foreground: #F8FAFC;
+  --mm-muted: #131B2E;
+  --mm-muted-foreground: #94A3B8;
+  --mm-border: #1E293B;
+  --mm-card: #0F172A;
+  background-color: var(--mm-background);
+  color: var(--mm-foreground);
 }
 
-body.dark-theme .bg-white,
-body.dark-theme .navbar,
+body.dark-theme .navbar {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  border-color: var(--mm-border) !important;
+}
+
+body.dark-theme .mm-card {
+  background: var(--mm-card);
+  border-color: var(--mm-border);
+}
+
+body.dark-theme .mm-btn-outline {
+  color: #FFFFFF !important;
+  border-color: var(--mm-border) !important;
+}
+
+body.dark-theme .mm-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
 body.dark-theme .card,
 body.dark-theme footer {
-  background-color: #1e293b !important;
-  color: #e2e8f0 !important;
-  border-color: #334155 !important;
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+  border-color: #1E293B !important;
 }
 
-body.dark-theme .text-secondary,
-body.dark-theme .text-muted {
-  color: #94a3b8 !important;
+body.dark-theme .text-muted,
+body.dark-theme .text-secondary {
+  color: #94A3B8 !important;
 }
 
 body.dark-theme .nav-link {
-  color: #e2e8f0 !important;
+  color: #CBD5E1 !important;
+}
+
+body.dark-theme .nav-link:hover {
+  color: #60A5FA !important;
 }
 
 body.dark-theme .form-control {
-  background-color: #0f172a !important;
-  color: #e2e8f0 !important;
-  border-color: #334155 !important;
-}
-
-body.dark-theme .form-control::placeholder {
-  color: #64748b !important;
-}
-
-body.dark-theme .form-label {
-  color: #cbd5e1 !important;
+  background-color: #0F172A !important;
+  color: #F8FAFC !important;
+  border-color: #1E293B !important;
 }
 
 body.dark-theme a {
-  color: #93c5fd;
-}
-
-body.dark-theme .shadow,
-body.dark-theme .shadow-sm {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4) !important;
-}
-
-@keyframes iq-toast-in {
-  from { transform: translateX(30px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  color: #60A5FA;
 }
 
 .iq-brand-text {
-  color: #1e2334;
+  font-family: var(--mm-font-body);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--mm-foreground);
 }
 
 body.dark-theme .iq-brand-text {
-  color: #e2e8f0;
+  color: #FFFFFF;
 }

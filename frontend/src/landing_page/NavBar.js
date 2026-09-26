@@ -88,7 +88,7 @@ function NavBar() {
             </li>
 
             <li className="nav-item ms-lg-2 mt-3 mt-lg-0">
-              <button className="btn btn-light border" onClick={toggleTheme} title="Toggle dark mode">
+              <button className="mm-theme-toggle" onClick={toggleTheme} title="Toggle dark mode">
                 {dark ? "☀️" : "🌙"}
               </button>
             </li>
@@ -100,14 +100,16 @@ function NavBar() {
                     <Link
                       to={DASHBOARD_URL}
                       onClick={(e) => { e.preventDefault(); window.location.href = DASHBOARD_URL; }}
-                      className="btn btn-outline-primary rounded-pill px-4"
+                      className="mm-btn-outline"
+                      style={{ padding: "8px 20px", fontSize: "0.9rem" }}
                     >
                       Dashboard
                     </Link>
                   </li>
                   <li className="nav-item ms-lg-2 mt-3 mt-lg-0">
                     <button
-                      className="btn btn-primary rounded-pill px-4"
+                      className="mm-btn-primary"
+                      style={{ padding: "8px 20px", fontSize: "0.9rem" }}
                       onClick={handleLogout}
                     >
                       Logout
@@ -124,7 +126,8 @@ function NavBar() {
                   <li className="nav-item ms-lg-2 mt-3 mt-lg-0">
                     <Link
                       to="/signup"
-                      className="btn btn-primary rounded-pill px-4"
+                      className="mm-btn-primary"
+                      style={{ padding: "8px 22px", fontSize: "0.9rem" }}
                     >
                       Get Started
                     </Link>

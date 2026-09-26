@@ -2,93 +2,128 @@ import React from "react";
 
 function Stats() {
   return (
-    <section className="container py-5">
+    <section className="mm-inverted-section my-5">
+      <div className="container position-relative" style={{ zIndex: 1 }}>
 
-      {/* Heading */}
-      <div className="text-center mb-5">
-        <h2 className="fw-bold display-6">
-          Why Investors Choose <span className="text-primary">InvestIQ</span>
-        </h2>
+        {/* Section Header */}
+        <div className="text-center mb-5 pb-2">
+          <div className="mm-section-badge mm-section-badge-light">
+            <span className="mm-badge-dot"></span>
+            <span>Platform Excellence</span>
+          </div>
 
-        <p className="text-muted fs-5 mt-3">
-          A modern investment platform designed with AI, security, and simplicity
-          in mind.
-        </p>
+          <h2 className="mm-headline display-5 mb-3" style={{ color: "#FFFFFF" }}>
+            Engineered for <span className="mm-gradient-text">Precision</span> & Clarity
+          </h2>
+
+          <p className="fs-5 mx-auto" style={{ maxWidth: "600px", color: "#94A3B8" }}>
+            A disciplined architecture combining real-time NSE data feeds,
+            low-latency portfolio math, and private AI analytics.
+          </p>
+        </div>
+
+        {/* 4 Cards Grid */}
+        <div className="row g-4">
+
+          <div className="col-md-6 col-lg-3">
+            <div className="mm-card h-100 p-4">
+              <div className="mm-icon-container">
+                🤖
+              </div>
+              <h5 className="fw-bold mb-2">AI Portfolio Advisor</h5>
+              <p className="mb-3" style={{ fontSize: "0.95rem" }}>
+                Continuous algorithmic risk profiling, diversification scores, and actionable rebalancing signals.
+              </p>
+              <div className="mt-auto pt-2 border-top" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                <span className="mm-mono" style={{ fontSize: "0.75rem", color: "#60A5FA" }}>● Gemini Powered</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-6 col-lg-3">
+            <div className="mm-card h-100 p-4">
+              <div className="mm-icon-container">
+                📊
+              </div>
+              <h5 className="fw-bold mb-2">Real-Time Analytics</h5>
+              <p className="mb-3" style={{ fontSize: "0.95rem" }}>
+                Zero-lag live NSE quotes, automated P&amp;L calculations, and interactive charts.
+              </p>
+              <div className="mt-auto pt-2 border-top" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                <span className="mm-mono" style={{ fontSize: "0.75rem", color: "#34D399" }}>● Sub-second Sync</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-6 col-lg-3">
+            <div className="mm-card h-100 p-4">
+              <div className="mm-icon-container">
+                ⭐
+              </div>
+              <h5 className="fw-bold mb-2">Smart Watchlist</h5>
+              <p className="mb-3" style={{ fontSize: "0.95rem" }}>
+                Personalized stock favorites, instant price alerts, and batch quotes in a clean layout.
+              </p>
+              <div className="mt-auto pt-2 border-top" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                <span className="mm-mono" style={{ fontSize: "0.75rem", color: "#FBBF24" }}>● Dynamic Filters</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-md-6 col-lg-3">
+            <div className="mm-card h-100 p-4">
+              <div className="mm-icon-container">
+                🔐
+              </div>
+              <h5 className="fw-bold mb-2">Institutional Security</h5>
+              <p className="mb-3" style={{ fontSize: "0.95rem" }}>
+                HTTP-only hardened JWT cookies, encrypted credentials, and zero cross-site leak vulnerabilities.
+              </p>
+              <div className="mt-auto pt-2 border-top" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                <span className="mm-mono" style={{ fontSize: "0.75rem", color: "#A78BFA" }}>● 256-bit Security</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Inverted Bottom Metric Strip */}
+        <div
+          className="row text-center mt-5 pt-5 g-4"
+          style={{ borderTop: "1px solid rgba(255, 255, 255, 0.1)" }}
+        >
+          <div className="col-6 col-md-3">
+            <div className="mm-headline fs-1" style={{ color: "#FFFFFF" }}>10K+</div>
+            <small className="mm-mono text-uppercase" style={{ color: "#94A3B8", letterSpacing: "0.08em", fontSize: "0.8rem" }}>
+              Portfolio Reviews
+            </small>
+          </div>
+
+          <div className="col-6 col-md-3">
+            <div className="mm-headline fs-1" style={{ color: "#60A5FA" }}>99.4%</div>
+            <small className="mm-mono text-uppercase" style={{ color: "#94A3B8", letterSpacing: "0.08em", fontSize: "0.8rem" }}>
+              Calculation Accuracy
+            </small>
+          </div>
+
+          <div className="col-6 col-md-3">
+            <div className="mm-headline fs-1" style={{ color: "#FFFFFF" }}>24 / 7</div>
+            <small className="mm-mono text-uppercase" style={{ color: "#94A3B8", letterSpacing: "0.08em", fontSize: "0.8rem" }}>
+              Live Market Monitoring
+            </small>
+          </div>
+
+          <div className="col-6 col-md-3">
+            <div className="mm-headline fs-1" style={{ color: "#34D399" }}>0%</div>
+            <small className="mm-mono text-uppercase" style={{ color: "#94A3B8", letterSpacing: "0.08em", fontSize: "0.8rem" }}>
+              Paper Trading Risk
+            </small>
+          </div>
+        </div>
+
       </div>
-
-      <div className="row g-4">
-
-        <div className="col-md-6 col-lg-3">
-          <div className="card border-0 shadow-sm h-100 text-center p-4">
-            <div className="display-5 mb-3">🤖</div>
-            <h4 className="fw-bold">AI Portfolio Advisor</h4>
-            <p className="text-muted mb-0">
-              Receive intelligent suggestions to improve your portfolio and reduce
-              investment risk.
-            </p>
-          </div>
-        </div>
-
-        <div className="col-md-6 col-lg-3">
-          <div className="card border-0 shadow-sm h-100 text-center p-4">
-            <div className="display-5 mb-3">📊</div>
-            <h4 className="fw-bold">Real-Time Analytics</h4>
-            <p className="text-muted mb-0">
-              Track holdings, positions, and portfolio performance with
-              interactive charts.
-            </p>
-          </div>
-        </div>
-
-        <div className="col-md-6 col-lg-3">
-          <div className="card border-0 shadow-sm h-100 text-center p-4">
-            <div className="display-5 mb-3">⭐</div>
-            <h4 className="fw-bold">Smart Watchlist</h4>
-            <p className="text-muted mb-0">
-              Save favorite stocks, add personal notes, and receive price alerts.
-            </p>
-          </div>
-        </div>
-
-        <div className="col-md-6 col-lg-3">
-          <div className="card border-0 shadow-sm h-100 text-center p-4">
-            <div className="display-5 mb-3">🔐</div>
-            <h4 className="fw-bold">Secure Authentication</h4>
-            <p className="text-muted mb-0">
-              User accounts are protected using JWT authentication and secure APIs.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Bottom Statistics */}
-      <div className="row text-center mt-5">
-
-        <div className="col-6 col-md-3 mb-4">
-          <h2 className="fw-bold text-primary">10K+</h2>
-          <p className="text-muted">Portfolio Reviews</p>
-        </div>
-
-        <div className="col-6 col-md-3 mb-4">
-          <h2 className="fw-bold text-primary">95%</h2>
-          <p className="text-muted">User Satisfaction</p>
-        </div>
-
-        <div className="col-6 col-md-3 mb-4">
-          <h2 className="fw-bold text-primary">24/7</h2>
-          <p className="text-muted">AI Assistance</p>
-        </div>
-
-        <div className="col-6 col-md-3 mb-4">
-          <h2 className="fw-bold text-primary">100%</h2>
-          <p className="text-muted">Responsive Design</p>
-        </div>
-
-      </div>
-
     </section>
   );
 }
 
-export default Stats;
+export default Stats;
