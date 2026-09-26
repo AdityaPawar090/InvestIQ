@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
+import { API_URL } from "../config";
 
 const StockSearch = () => {
   const [symbol, setSymbol] = useState("");
@@ -15,7 +16,7 @@ const StockSearch = () => {
       setLoading(true);
 
       const res = await axios.get(
-        `http://localhost:3002/api/stocks/${symbol.toUpperCase()}`
+        `${API_URL}/api/stocks/${symbol.toUpperCase()}`
       );
 
       setStock(res.data);

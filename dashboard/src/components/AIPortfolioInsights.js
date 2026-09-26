@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 
 const AIPortfolioInsights = () => {
@@ -9,7 +10,7 @@ const AIPortfolioInsights = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/api/ai/portfolio-insights", { withCredentials: true })
+      .get(`${API_URL}/api/ai/portfolio-insights`, { withCredentials: true })
       .then((res) => setInsights(res.data.insights))
       .catch((err) =>
         setError(err.response?.data?.message || "Unable to load AI insights right now.")

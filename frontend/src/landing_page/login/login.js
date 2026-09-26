@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../ToastContext";
+import { API_URL } from "../../config";
 
 function Login() {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -12,7 +13,7 @@ function Login() {
   // If already logged in, don't show the login form at all — send them home.
   useEffect(() => {
     axios
-      .get("http://localhost:3002/api/auth/me", { withCredentials: true })
+      .get(`${API_URL}/api/auth/me`, { withCredentials: true })
       .then(() => navigate("/", { replace: true }))
       .catch(() => {});
   }, [navigate]);
@@ -27,7 +28,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        "http://localhost:3002/api/auth/login",
+        `${API_URL}/api/auth/login`,
         user,
         { withCredentials: true }
       );

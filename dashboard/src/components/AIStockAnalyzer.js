@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const AIStockAnalyzer = () => {
   const [stock, setStock] = useState("");
@@ -16,7 +17,7 @@ const AIStockAnalyzer = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3002/api/ai/analyze-stock",
+        `${API_URL}/api/ai/analyze-stock`,
         { stock: stock.trim() },
         { withCredentials: true }
       );

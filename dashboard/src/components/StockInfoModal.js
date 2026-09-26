@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const StockInfoModal = ({ name, mode, onClose }) => {
   const [data, setData] = useState(null);
@@ -15,13 +16,13 @@ const StockInfoModal = ({ name, mode, onClose }) => {
       try {
         if (mode === "ai") {
           const res = await axios.post(
-            "http://localhost:3002/api/ai/analyze-stock",
+            `${API_URL}/api/ai/analyze-stock`,
             { stock: `${name}.NS` },
             { withCredentials: true }
           );
           setData(res.data.analysis);
         } else {
-          const res = await axios.get(`http://localhost:3002/api/stocks/${name}.NS`);
+          const res = await axios.get(`${API_URL}/api/stocks/${name}.NS`);
           setData(res.data);
         }
       } catch (err) {

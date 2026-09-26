@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import "../navbar.css";
 import Logo from "../Logo";
 import { useTheme } from "../ThemeContext";
+import { API_URL, DASHBOARD_URL } from "../config";
 
 function NavBar() {
   const { dark, toggleTheme } = useTheme();
@@ -13,7 +14,7 @@ function NavBar() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/api/auth/me", { withCredentials: true })
+      .get(`${API_URL}/api/auth/me`, { withCredentials: true })
       .then((res) => setAuthUser(res.data.user || res.data))
       .catch(() => setAuthUser(null))
       .finally(() => setChecking(false));
@@ -21,7 +22,7 @@ function NavBar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3002/api/auth/logout", {}, { withCredentials: true });
+      await axios.post(`${API_URL}/api/auth/logout`, {}, { withCredentials: true });
     } catch (err) {
       // even if the request fails, clear the local session so the UI doesn't get stuck
     } finally {
@@ -97,8 +98,8 @@ function NavBar() {
                 <>
                   <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
                     <Link
-                      to="http://localhost:3000"
-                      onClick={(e) => { e.preventDefault(); window.location.href = "http://localhost:3000"; }}
+                      to={DASHBOARD_URL}
+                      onClick={(e) => { e.preventDefault(); window.location.href = DASHBOARD_URL; }}
                       className="btn btn-outline-primary rounded-pill px-4"
                     >
                       Dashboard

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
+import { API_URL } from "../config";
 
 // Browser speech recognition (Chrome/Edge). Falls back gracefully if unsupported.
 const SpeechRecognition =
@@ -26,7 +27,7 @@ const ChatBot = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:3002/api/ai/chat",
+        `${API_URL}/api/ai/chat`,
         { message },
         { withCredentials: true }
       );

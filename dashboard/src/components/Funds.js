@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import { usePortfolio } from "./PortfolioContext";
+import { API_URL } from "../config";
 
 const Funds = () => {
   const { wallet, holdings, refresh } = usePortfolio();
@@ -19,7 +20,7 @@ const Funds = () => {
     if (!value || value <= 0) return;
     setSubmitting(true);
     try {
-      await axios.post("http://localhost:3002/api/wallet/add", { amount: value }, { withCredentials: true });
+      await axios.post(`${API_URL}/api/wallet/add`, { amount: value }, { withCredentials: true });
       generalContext.showToast(`Added ₹${value.toLocaleString("en-IN")} to your wallet`, "success");
       setAmount("");
       setShowAdd(false);
@@ -36,7 +37,7 @@ const Funds = () => {
     if (!value || value <= 0) return;
     setSubmitting(true);
     try {
-      await axios.post("http://localhost:3002/api/wallet/withdraw", { amount: value }, { withCredentials: true });
+      await axios.post(`${API_URL}/api/wallet/withdraw`, { amount: value }, { withCredentials: true });
       generalContext.showToast(`Withdrew ₹${value.toLocaleString("en-IN")} from your wallet`, "success");
       setAmount("");
       setShowWithdraw(false);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -7,7 +8,7 @@ const Orders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/allOrders", { withCredentials: true })
+      .get(`${API_URL}/allOrders`, { withCredentials: true })
       .then((res) => setOrders(res.data))
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));

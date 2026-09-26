@@ -25,7 +25,10 @@ const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
 // Comma-separated list in .env, e.g. http://localhost:3000,http://localhost:3001
-const allowedOrigins = (process.env.CLIENT_ORIGINS || "http://localhost:3000,http://localhost:3001").split(",");
+const allowedOrigins = (process.env.CLIENT_ORIGINS || "http://localhost:3000,http://localhost:3001")
+  .split(",")
+  .map((o) => o.trim())
+  .filter(Boolean);
 
 const app = express();
 
@@ -48,6 +51,10 @@ app.use("/api/wallet", walletRoutes);
 
 app.get("/", (req, res) => {
   res.send("🚀 InvestIQ Backend Running");
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
 });
 
 app.get("/allHoldings", verifyToken, async (req, res) => {

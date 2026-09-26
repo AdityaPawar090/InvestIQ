@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import { usePortfolio } from "./PortfolioContext";
+import { API_URL } from "../config";
 import "./BuyActionWindow.css";
 
 const SellActionWindow = ({ uid }) => {
@@ -24,7 +25,7 @@ const SellActionWindow = ({ uid }) => {
 
     try {
       await axios.post(
-        "http://localhost:3002/newOrder",
+        `${API_URL}/newOrder`,
         { name: uid, qty, mode: "SELL" },
         { withCredentials: true }
       );

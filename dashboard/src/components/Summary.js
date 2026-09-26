@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { usePortfolio } from "./PortfolioContext";
+import { API_URL } from "../config";
 
 const Summary = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ const Summary = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/allOrders", { withCredentials: true })
+      .get(`${API_URL}/allOrders`, { withCredentials: true })
       .then((res) => setOrders(res.data.slice(0, 5)))
       .catch(() => {});
   }, []);

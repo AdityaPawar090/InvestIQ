@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
+import { API_URL } from "../config";
 
 const PriceAlerts = () => {
   const { showToast } = useContext(GeneralContext);
@@ -10,7 +11,7 @@ const PriceAlerts = () => {
 
   const loadAlerts = () => {
     axios
-      .get("http://localhost:3002/api/alerts", { withCredentials: true })
+      .get(`${API_URL}/api/alerts`, { withCredentials: true })
       .then((res) => setAlerts(res.data.alerts || []))
       .catch(() => {});
   };
@@ -26,7 +27,7 @@ const PriceAlerts = () => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:3002/api/alerts",
+        `${API_URL}/api/alerts`,
         { ...form, targetPrice: Number(form.targetPrice) },
         { withCredentials: true }
       );
@@ -41,7 +42,7 @@ const PriceAlerts = () => {
   };
 
   const deleteAlert = async (id) => {
-    await axios.delete(`http://localhost:3002/api/alerts/${id}`, { withCredentials: true });
+    await axios.delete(`${API_URL}/api/alerts/${id}`, { withCredentials: true });
     loadAlerts();
   };
 

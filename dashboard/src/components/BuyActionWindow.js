@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import GeneralContext from "./GeneralContext";
 import { usePortfolio } from "./PortfolioContext";
+import { API_URL } from "../config";
 import "./BuyActionWindow.css";
 
 const BuyActionWindow = ({ uid }) => {
@@ -15,7 +16,7 @@ const BuyActionWindow = ({ uid }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/api/stocks/${uid}.NS`)
+      .get(`${API_URL}/api/stocks/${uid}.NS`)
       .then((res) => setLivePrice(res.data.price))
       .catch(() => setLivePrice(null))
       .finally(() => setLoadingPrice(false));
@@ -30,7 +31,7 @@ const BuyActionWindow = ({ uid }) => {
 
     try {
       await axios.post(
-        "http://localhost:3002/newOrder",
+        `${API_URL}/newOrder`,
         { name: uid, qty, mode: "BUY" },
         { withCredentials: true }
       );

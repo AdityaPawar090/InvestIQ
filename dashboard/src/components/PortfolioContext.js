@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const PortfolioContext = createContext(null);
 
@@ -12,8 +13,8 @@ export const PortfolioProvider = ({ children }) => {
   const refresh = useCallback(async () => {
     try {
       const [holdingsRes, walletRes] = await Promise.all([
-        axios.get("http://localhost:3002/allHoldings", { withCredentials: true }),
-        axios.get("http://localhost:3002/api/wallet", { withCredentials: true }),
+        axios.get(`${API_URL}/allHoldings`, { withCredentials: true }),
+        axios.get(`${API_URL}/api/wallet`, { withCredentials: true }),
       ]);
 
       setHoldings(holdingsRes.data);
@@ -23,7 +24,7 @@ export const PortfolioProvider = ({ children }) => {
       await Promise.all(
         holdingsRes.data.map(async (h) => {
           try {
-            const r = await axios.get(`http://localhost:3002/api/stocks/${h.name}.NS`);
+            const r = await axios.get(`${API_URL}/api/stocks/${h.name}.NS`);
             prices[h.name] = r.data;
           } catch {
             /* live price unavailable — components fall back to stored price */

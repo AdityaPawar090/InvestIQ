@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 const News = () => {
   const [news, setNews] = useState([]);
@@ -8,7 +9,7 @@ const News = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/api/stocks/news")
+      .get(`${API_URL}/api/stocks/news`)
       .then((res) => setNews(res.data.news || []))
       .catch(() => setError("Unable to load news right now."))
       .finally(() => setLoading(false));

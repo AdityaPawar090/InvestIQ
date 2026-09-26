@@ -14,6 +14,7 @@ import GeneralContext from "./GeneralContext";
 import { usePortfolio } from "./PortfolioContext";
 import { watchlist as defaultWatchlist } from "../data/data";
 import { DoughnutChart } from "./DoughnoutChart";
+import { API_URL } from "../config";
 
 const SYMBOLS = defaultWatchlist.map((s) => s.name);
 
@@ -36,7 +37,7 @@ const WatchList = () => {
   const loadQuotes = () => {
     const symbolQuery = SYMBOLS.map((s) => `${s}.NS`).join(",");
     axios
-      .get(`http://localhost:3002/api/stocks/batch?symbols=${symbolQuery}`)
+      .get(`${API_URL}/api/stocks/batch?symbols=${symbolQuery}`)
       .then((res) => {
         const map = {};
         (res.data.quotes || []).forEach((q) => {
@@ -50,7 +51,7 @@ const WatchList = () => {
 
   const loadFavorites = () => {
     axios
-      .get("http://localhost:3002/api/favorites", { withCredentials: true })
+      .get(`${API_URL}/api/favorites`, { withCredentials: true })
       .then((res) => setFavorites(res.data.favorites || []))
       .catch(() => {});
   };
@@ -64,10 +65,10 @@ const WatchList = () => {
 
   const toggleFavorite = async (symbol) => {
     if (favorites.includes(symbol)) {
-      await axios.delete(`http://localhost:3002/api/favorites/${symbol}`, { withCredentials: true });
+      await axios.delete(`${API_URL}/api/favorites/${symbol}`, { withCredentials: true });
       setFavorites((f) => f.filter((s) => s !== symbol));
     } else {
-      await axios.post("http://localhost:3002/api/favorites", { symbol }, { withCredentials: true });
+      await axios.post(`${API_URL}/api/favorites`, { symbol }, { withCredentials: true });
       setFavorites((f) => [...f, symbol]);
     }
   };
